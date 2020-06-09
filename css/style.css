@@ -1,0 +1,19 @@
+body {
+    background-color: ghostwhite;
+}
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+.field-row {
+    display: flex;
+    flex-direction: row;
+}
+.field-cell {
+    background-color: rgb(149, 192, 240);
+    height: 40px;
+    width: 40px;
+    border: 1px solid black;
+}
