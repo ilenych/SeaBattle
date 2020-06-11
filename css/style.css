@@ -26,3 +26,11 @@ body {
     background-color: red;
 }
 
+.miss {
+    background-color: indigo;
+}
+ .hit {
+     
+     background-color: green;
+ }
+
