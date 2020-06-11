@@ -1,17 +1,20 @@
 import { Field } from "./Field.js";
+import { Game } from "./Game.js";
+import { field } from "./Enum.js";
 
 // Add listener on main div
 const main = document.getElementById("main");
 main.addEventListener("click", createField);
 
 // Add listener on first and second fields
-const firstField = document.getElementById("firstField");
-const secondField = document.getElementById("secondField");
+const firstField = document.getElementById(field.first);
+const secondField = document.getElementById(field.second);
+
 /**
- * Craete field 
+ * Craete field
  */
 function createField() {
-    // Create 2 fields
+  // Create 2 fields
   let mf = new Field();
   const myField = mf.generateField();
   let ef = new Field();
@@ -41,5 +44,9 @@ function createField() {
         .classList.add(`${cell.status}`);
     }
   }
+  // Remove click
   main.removeEventListener("click", createField);
+  // Start game
+  let sp = new Game(myField, field.first, enemyField, field.second);
+  sp.start();
 }
