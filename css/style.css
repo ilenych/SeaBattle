@@ -15,6 +15,12 @@ body {
   border: 3px solid black;
   border-radius: 5px;
   cursor: pointer;
+  transition: all 0.1s linear;
+transform: scale(1);
+}
+
+#newGame:hover{
+  transform: scale(1.1);
 }
 
 #restart {
@@ -26,6 +32,16 @@ body {
   border-radius: 5px;
   margin-top: 16px;
   cursor: pointer;
+  transition: all 0.1s linear;
+transform: scale(1);
+}
+
+#restart:hover{
+  transform: scale(1.05);
+}
+
+#restart:active{
+  transform: scale(0.98);
 }
 
 .fields {
