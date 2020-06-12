@@ -1,12 +1,12 @@
 "use strict";
 import { status } from "./Enum.js";
+import { field } from "./Enum.js";
 export class Basic {
   /**
    * Return link on cell with given coord
    * @param {Object} coords - {x: Int, y: Int}
    */
   getCell(coords, field) {
-    // получение ссылки на ячейку с указанными координатами
     let cell;
     if (Array.isArray(coords)) {
       cell = field.cells.filter((item) => {
@@ -18,7 +18,6 @@ export class Basic {
       });
     }
 
-    // возвращаем ссылку на ячейку, либо false, если совпадений не найдено
     if (cell.length != 0) {
       return cell[0];
     } else {
@@ -59,7 +58,7 @@ export class Basic {
     return Math.floor(rand);
   }
 
-  shotToCell(pressedCell, fieldId, coords) {
+  shotToCell(pressedCell, fieldId, coords, fieldObject) {
     // If past
     if (
       pressedCell.status === status.empty ||
@@ -76,6 +75,41 @@ export class Basic {
       document
         .getElementById(`f${fieldId}x${coords[0]}y${coords[1]}`)
         .classList.add("hit");
+
+      // Check ship on sank
+      let isShipSank = true;
+
+      for (let ship of pressedCell.shipParts) {
+        const cell = this.getCell(ship, fieldObject);
+        if (!cell.shot) {
+          isShipSank = false;
+          break;
+        }
+      }
+
+      if (isShipSank) {
+        for (let ship of pressedCell.shipParts) {
+          document
+            .getElementById(`f${fieldId}x${ship.x}y${ship.y}`)
+            .classList.add("sank");
+        }
+      }
+
+      // Check whether all ships are damaged
+      let endOfGame = true;
+
+      for (let ship of fieldObject.cells) {
+        if (ship.status === status.ship) {
+          if (!ship.shot) {
+            endOfGame = false;
+            break;
+          }
+        }
+      }
+      // Check end game
+      if (endOfGame) {
+        fieldId == 2 ? alert('Поздравляю, вы выйграли') : alert('Вы проиграли');
+      }
       return false;
     }
   }

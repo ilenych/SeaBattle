@@ -27,6 +27,7 @@ export class Field extends Basic {
           x: i,
           y: j,
           status: status.empty,
+          shipParts: null,
           shot: false,
         });
       }
@@ -107,7 +108,6 @@ export class Field extends Basic {
     flag.includes(false)
       ? this.positionShip(ship)
       : this.placeShipOnFiled(coords);
-    // console.log(this.field)
   }
 
   /**
@@ -116,8 +116,10 @@ export class Field extends Basic {
    */
   placeShipOnFiled(coords) {
     for (let coord of coords) {
-      this.setBlockStatus(coord);
+      let cell = super.getCell(coord, this.field);
+      cell.shipParts = coords;
       this.setShipStatus(coord);
+      this.setBlockStatus(coord);
     }
   }
 }

@@ -22,6 +22,6 @@ export class BotShot extends Basic {
         cellToShot.shot = true
         // Create coord
         let coord = [coords.x, coords.y]
-        return super.shotToCell(cellToShot, this.fieldId, coord)
+        return super.shotToCell(cellToShot, this.fieldId, coord, this.fieldObject)
     }
 }

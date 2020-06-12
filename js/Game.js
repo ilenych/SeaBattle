@@ -55,7 +55,7 @@ export class Game extends PlayerShot {
         status.innerText = "Ваш ход...";
       } else {
         setTimeout(() => {
-          enemyShot(answer);
+          enemyShot();
         }, 1000);
       }
     }

@@ -21,7 +21,6 @@ export class PlayerShot extends Basic {
             return false;
         }
         pressedCell.shot = true;
-
-        return super.shotToCell(pressedCell, fieldId, coords)
+        return super.shotToCell(pressedCell, fieldId, coords, this.field)
     }
 }
