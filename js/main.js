@@ -11,6 +11,7 @@ newGame.addEventListener("click", createField);
 const firstField = document.getElementById(field.first);
 const secondField = document.getElementById(field.second);
 
+// Add listener on restart game
 const recreate = document.getElementById("restart");
 recreate.addEventListener("click", recreateField);
 /**
@@ -24,8 +25,6 @@ function createField() {
   const myField = mf.generateField();
   let ef = new Field();
   const enemyField = ef.generateField();
-
-  console.log(myField);
 
   for (let field of [
     [myField, firstField, 1],
@@ -60,8 +59,8 @@ function createField() {
   // Remove click
   main.removeEventListener("click", createField);
   // Start game
-  let sp = new Game(myField, field.first, enemyField, field.second);
-  sp.start();
+  let game = new Game(myField, field.first, enemyField, field.second);
+  game.start();
 }
 
 function recreateField() {

@@ -58,6 +58,13 @@ export class Basic {
     return Math.floor(rand);
   }
 
+  /**
+   * 
+   * @param {Object} pressedCell - current object field
+   * @param {Number} fieldId - number field
+   * @param {Object} coords - [x, y]
+   * @param {Object} fieldObject - object field
+   */
   shotToCell(pressedCell, fieldId, coords, fieldObject) {
     // If past
     if (
